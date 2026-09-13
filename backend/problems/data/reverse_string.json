@@ -1,0 +1,77 @@
+[
+  {
+    "problem_id": "REVERSE_STRING",
+    "title": "Reverse String",
+    "description": "Given a string, return the string in reverse order.",
+    "difficulty": "Easy",
+    "topics": [
+      "Strings"
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "The string contains printable characters."
+    ],
+    "input_format": "A single string.",
+    "output_format": "The reversed string.",
+    "examples": [
+      {
+        "input": "hello",
+        "output": "olleh",
+        "explanation": "The characters of the string are reversed."
+      },
+      {
+        "input": "python",
+        "output": "nohtyp",
+        "explanation": "The characters are returned in reverse order."
+      }
+    ],
+    "starter_code": {
+      "python": "def reverse_string(s):\n    # Write your solution here\n    pass",
+      "java": "class Solution {\n    public String reverseString(String s) {\n        // Write your solution here\n        return \"\";\n    }\n}",
+      "cpp": "class Solution {\npublic:\n    string reverseString(string s) {\n        // Write your solution here\n        return \"\";\n    }\n};"
+    },
+    "supported_languages": [
+      "python",
+      "java",
+      "cpp"
+    ],
+    "expected_time_complexity": "O(n)",
+    "expected_space_complexity": "O(n)",
+    "hints": [
+  "Think about how you can remember numbers you have already seen.",
+  "For each number, check whether target - number has already been seen.",
+  "Can you solve this in one pass using a hash map?"
+],
+    "editorial": "Traverse the string from the end to the beginning and construct the reversed string. An alternative is to use two pointers and swap characters from both ends.",
+    "test_cases": [
+      {
+        "test_case_id": "REVERSE_STRING_001",
+        "input": "hello",
+        "expected_output": "olleh",
+        "visibility": "public",
+        "timeout_seconds": 2.0
+      },
+      {
+        "test_case_id": "REVERSE_STRING_002",
+        "input": "python",
+        "expected_output": "nohtyp",
+        "visibility": "public",
+        "timeout_seconds": 2.0
+      },
+      {
+        "test_case_id": "REVERSE_STRING_003",
+        "input": "a",
+        "expected_output": "a",
+        "visibility": "hidden",
+        "timeout_seconds": 2.0
+      },
+      {
+        "test_case_id": "REVERSE_STRING_004",
+        "input": "racecar",
+        "expected_output": "racecar",
+        "visibility": "hidden",
+        "timeout_seconds": 2.0
+      }
+    ]
+  }
+]
