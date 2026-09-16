@@ -1,0 +1,71 @@
+[
+  {
+    "problem_id": "REVERSE_STRING",
+    "title": "Reverse String",
+    "description": "Given a string, return the string with its characters in reverse order.",
+    "difficulty": "Easy",
+    "topics": ["Strings", "Two Pointers"],
+    "constraints": [
+      "1 <= s.length <= 100000",
+      "The string contains printable characters."
+    ],
+    "input_format": "A single line containing the string.",
+    "output_format": "The reversed string.",
+    "examples": [
+      {
+        "input": "hello",
+        "output": "olleh",
+        "explanation": "The characters of hello are reversed to produce olleh."
+      },
+      {
+        "input": "world",
+        "output": "dlrow",
+        "explanation": "The characters of world are reversed to produce dlrow."
+      }
+    ],
+    "starter_code": {
+      "python": "def reverse_string(s):\n    pass",
+      "java": "class Solution {\n    public String reverseString(String s) {\n        return \"\";\n    }\n}",
+      "cpp": "class Solution {\npublic:\n    string reverseString(string s) {\n        return \"\";\n    }\n};"
+    },
+    "supported_languages": ["python", "java", "cpp"],
+    "expected_time_complexity": "O(n)",
+    "expected_space_complexity": "O(n)",
+    "hints": [
+      "You can build the result from the end of the string.",
+      "Try using two pointers starting at opposite ends.",
+      "Swap characters while the left pointer is smaller than the right pointer."
+    ],
+    "editorial": "Use two pointers, one at the beginning and one at the end. Swap the characters at those positions and move both pointers toward the center.",
+    "test_cases": [
+      {
+        "test_case_id": "REVERSE_STRING_PUBLIC_001",
+        "input": "hello",
+        "expected_output": "olleh",
+        "visibility": "public",
+        "timeout_seconds": 2.0
+      },
+      {
+        "test_case_id": "REVERSE_STRING_PUBLIC_002",
+        "input": "world",
+        "expected_output": "dlrow",
+        "visibility": "public",
+        "timeout_seconds": 2.0
+      },
+      {
+        "test_case_id": "REVERSE_STRING_HIDDEN_001",
+        "input": "abcd",
+        "expected_output": "dcba",
+        "visibility": "hidden",
+        "timeout_seconds": 2.0
+      },
+      {
+        "test_case_id": "REVERSE_STRING_HIDDEN_002",
+        "input": "a",
+        "expected_output": "a",
+        "visibility": "hidden",
+        "timeout_seconds": 2.0
+      }
+    ]
+  }
+]
