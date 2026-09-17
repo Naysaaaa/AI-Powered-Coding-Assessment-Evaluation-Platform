@@ -145,3 +145,68 @@ def test_load_problem_rejects_invalid_definition(tmp_path):
         match="At least one test case is required",
     ):
         load_problem_file(file_path)
+
+
+def test_load_all_problems_rejects_duplicate_problem_ids(
+    tmp_path,
+    monkeypatch,
+):
+    problem_template = {
+        "problem_id": "DUPLICATE_TEST",
+        "title": "Duplicate Test",
+        "description": "A problem used to test duplicate IDs.",
+        "difficulty": "Easy",
+        "topics": ["Arrays"],
+        "constraints": [],
+        "input_format": "An integer",
+        "output_format": "An integer",
+        "examples": [],
+        "starter_code": {
+            "python": "print(1)",
+        },
+        "supported_languages": ["python"],
+        "expected_time_complexity": "O(1)",
+        "expected_space_complexity": "O(1)",
+        "hints": [],
+        "editorial": None,
+        "test_cases": [
+            {
+                "test_case_id": "PUBLIC_001",
+                "input": "1",
+                "expected_output": "1",
+                "visibility": "public",
+                "timeout_seconds": 2.0,
+            },
+            {
+                "test_case_id": "HIDDEN_001",
+                "input": "2",
+                "expected_output": "2",
+                "visibility": "hidden",
+                "timeout_seconds": 2.0,
+            },
+        ],
+    }
+
+    file_one = tmp_path / "arrays.json"
+    file_two = tmp_path / "strings.json"
+
+    file_one.write_text(
+        json.dumps([problem_template]),
+        encoding="utf-8",
+    )
+
+    file_two.write_text(
+        json.dumps([problem_template]),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        "backend.problems.loader.DATA_DIRECTORY",
+        tmp_path,
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate problem_id: DUPLICATE_TEST",
+    ):
+        load_all_problems()

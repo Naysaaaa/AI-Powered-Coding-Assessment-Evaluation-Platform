@@ -12,6 +12,7 @@ class DSAPattern(str, Enum):
     LINKED_LIST = "Linked List"
     BINARY_TREE = "Binary Tree"
     BST = "BST"
+    BINARY_SEARCH = "Binary Search"
     HEAP = "Heap"
     GRAPH = "Graph"
     BFS = "BFS"

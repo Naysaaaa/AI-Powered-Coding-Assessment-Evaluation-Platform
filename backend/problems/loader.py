@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from backend.problems.models import Problem
-from backend.problems.validator import validate_problem
+from backend.problems.validator import validate_problem, validate_problems
 
 
 DATA_DIRECTORY = Path(__file__).parent / "data"
@@ -10,13 +10,9 @@ DATA_DIRECTORY = Path(__file__).parent / "data"
 
 def load_problem_file(file_path: Path) -> list[Problem]:
     """
-    Load and validate problems from a JSON file.
+    Load and validate problems from a single JSON file.
 
-    Each JSON file must contain a list of problem definitions.
-
-    Raises:
-        ValueError: If the JSON structure or any problem definition
-        is invalid.
+    Each JSON file must contain a JSON array of problem definitions.
     """
 
     with file_path.open("r", encoding="utf-8") as file:
@@ -61,13 +57,29 @@ def load_problem_file(file_path: Path) -> list[Problem]:
 
 def load_all_problems() -> list[Problem]:
     """
-    Load and validate all problems from JSON files
-    in the data directory.
+    Load and validate all problems from JSON files.
+
+    Individual problems are validated first.
+    Then the complete collection is validated to detect
+    duplicate problem IDs or titles across files.
     """
 
     problems = []
 
     for file_path in sorted(DATA_DIRECTORY.glob("*.json")):
         problems.extend(load_problem_file(file_path))
+
+    validation_errors = validate_problems(problems)
+
+    if validation_errors:
+        error_message = (
+            "Problem library validation failed:\n"
+            + "\n".join(
+                f"- {error}"
+                for error in validation_errors
+            )
+        )
+
+        raise ValueError(error_message)
 
     return problems
